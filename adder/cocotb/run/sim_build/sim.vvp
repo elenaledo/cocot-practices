@@ -1,0 +1,44 @@
+#! /home/tools/ocs/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-196-g44bc9cba0)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/home/tools/ocs/lib/ivl/system.vpi";
+:vpi_module "/home/tools/ocs/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/tools/ocs/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/tools/ocs/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/tools/ocs/lib/ivl/va_math.vpi";
+:vpi_module "/home/tools/ocs/lib/ivl/v2009.vpi";
+S_0x555556180e10 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x555556180fa0 .scope module, "adder" "adder" 3 6;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 4 "A";
+    .port_info 1 /INPUT 4 "B";
+    .port_info 2 /OUTPUT 5 "X";
+P_0x5555561944d0 .param/l "DATA_WIDTH" 0 3 7, +C4<00000000000000000000000000000100>;
+o0x7fb4a598c018 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v0x555556192fa0_0 .net "A", 3 0, o0x7fb4a598c018;  0 drivers
+o0x7fb4a598c048 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v0x5555561c9540_0 .net "B", 3 0, o0x7fb4a598c048;  0 drivers
+v0x5555561c9620_0 .net "X", 4 0, L_0x5555561c9e00;  1 drivers
+v0x5555561c9710_0 .net *"_ivl_0", 4 0, L_0x5555561c9b60;  1 drivers
+L_0x7fb4a5943018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x5555561c97f0_0 .net *"_ivl_3", 0 0, L_0x7fb4a5943018;  1 drivers
+v0x5555561c9920_0 .net *"_ivl_4", 4 0, L_0x5555561c9cb0;  1 drivers
+L_0x7fb4a5943060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x5555561c9a00_0 .net *"_ivl_7", 0 0, L_0x7fb4a5943060;  1 drivers
+L_0x5555561c9b60 .concat [ 4 1 0 0], o0x7fb4a598c018, L_0x7fb4a5943018;
+L_0x5555561c9cb0 .concat [ 4 1 0 0], o0x7fb4a598c048, L_0x7fb4a5943060;
+L_0x5555561c9e00 .arith/sum 5, L_0x5555561c9b60, L_0x5555561c9cb0;
+    .scope S_0x555556180fa0;
+T_0 ;
+    %vpi_call/w 3 18 "$dumpfile", "dump.vcd" {0 0 0};
+    %vpi_call/w 3 19 "$dumpvars", 32'sb00000000000000000000000000000001, S_0x555556180fa0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/home/elena/Comparch/adder_thu/cocotb/run/../../src/adder.sv";

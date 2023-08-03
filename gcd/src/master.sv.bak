@@ -1,0 +1,41 @@
+module master(
+  input logic [3:0] data_a,data_b,
+  input logic       busy_i, valid_i,
+  input logic [3:0] gcd_i,
+
+  output logic [3:0] gcd_o,
+  output logic [3:0] a_o, b_o,
+  output logic       req_o,
+
+  input logic clk, rst
+);
+
+always_ff @(posedge clk) begin
+  if (rst) begin
+    req_o <= 1'b0;
+    a_o <= 0;
+    b_o <= 0;
+    gcd_o <= 0;
+  end
+  else begin
+    if (valid_i) begin
+      gcd_o <= gcd_i;
+    end
+    else gcd_o <= 0;
+
+    if ((data_a != 0) && (data_b != 0)) begin
+      req_o <= 1'b1;
+      if (busy_i) begin
+        a_o <= 0;
+        b_o <= 0;
+      end
+      else begin
+        a_o <= data_a;
+        b_o <= data_b;
+        req_o <= 1'b0;
+      end
+    end
+  end
+end
+
+endmodule

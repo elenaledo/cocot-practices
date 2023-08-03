@@ -1,0 +1,35 @@
+module proc(
+  input  logic       clk,
+  input  logic       rst,
+  input  logic [3:0] a_i,
+  input  logic [3:0] b_i,
+  output logic [3:0] gcd_o
+);
+
+  logic [3:0] a,b,gcd;
+  logic req, busy, valid;
+
+  gcd slave(
+    .clk(clk),
+    .rst(rst),
+    .a(a),
+    .b(b),
+    .req_i(req),
+    .busy_o(busy),
+    .valid_o(valid),
+    .gcd_o(gcd)
+  );
+
+  master mter(
+    .data_a(a_i),
+    .data_b(b_i),
+    .busy_i(busy),
+    .valid_i(valid),
+    .gcd_i(gcd),
+    .gcd_o(gcd_o),
+    .a_o(a),
+    .b_o(b),
+    .req_o(req)
+  );
+
+endmodule: proc

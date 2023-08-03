@@ -1,0 +1,8 @@
+../src/src/dff.sv
+../src/src/FIFO.sv
+../src/src/gcdControl.sv
+../src/src/gcdDatapath.sv
+../src/src/master.sv
+../src/src/mux21.sv
+../src/src/mux41.sv
+../src/src/slave.sv
